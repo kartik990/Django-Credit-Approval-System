@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  postgre-db:
+    image: postgres
+    environment:
+      POSTGRES_DB: assign-db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: passway
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgre-db
+    environment:
+      DB_NAME: assign-db
+      DB_USER: postgres
+      DB_PASSWORD: passway
+      DB_HOST: postgre-db
