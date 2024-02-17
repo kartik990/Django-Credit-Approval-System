@@ -22,3 +22,6 @@ env/
 __pycache__/
 media
 static
+
+# Visual Studio Code
+.vscode/
